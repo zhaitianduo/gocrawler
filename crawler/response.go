@@ -9,7 +9,7 @@ type Response struct {
 	depth    uint32
 }
 
-func NewResponse(response *http.Response, depth uint32) {
+func NewResponse(response *http.Response, depth uint32) *Response {
 	return &Response{
 		response: response,
 		depth:    depth,

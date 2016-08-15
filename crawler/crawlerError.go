@@ -2,7 +2,6 @@ package crawler
 
 import (
 	"bytes"
-	"errors"
 )
 
 type ErrorType string
@@ -39,7 +38,7 @@ func (c *myCrawlerError) genFullMsg() {
 	var buf bytes.Buffer
 	buf.WriteString("Crawler Error: ")
 	if c.errType != "" {
-		buf.WriteString(c.errType)
+		buf.WriteString(string(c.errType))
 		buf.WriteString(":")
 	}
 	buf.WriteString(c.errMsg)
