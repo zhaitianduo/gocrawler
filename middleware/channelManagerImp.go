@@ -9,9 +9,9 @@ import (
 
 type myChannelManager struct {
 	channelLen uint32
-	reqChan    chan *base.Request
-	resChan    chan *base.Response
-	itemChan   chan *base.Item
+	reqChan    chan base.Request
+	resChan    chan base.Response
+	itemChan   chan base.Item
 	errorChan  chan error
 	status     ChannelManagerStatus
 	rwmutex    sync.RWMutex
@@ -27,9 +27,9 @@ func (m *myChannelManager) Init(channelLen uint32, reset bool) bool {
 		return false
 	}
 	m.channelLen = channelLen
-	m.reqChan = make(chan *base.Request, channelLen)
-	m.resChan = make(chan *base.Response, channelLen)
-	m.itemChan = make(chan *base.Item, channelLen)
+	m.reqChan = make(chan base.Request, channelLen)
+	m.resChan = make(chan base.Response, channelLen)
+	m.itemChan = make(chan base.Item, channelLen)
 	m.errorChan = make(chan error, channelLen)
 	m.status = CHANNEL_MANAGER_STATUS_INITIALIZED
 	return true
@@ -58,7 +58,7 @@ func (m *myChannelManager) checkInitializedStatus() error {
 	}
 }
 
-func (m *myChannelManager) ReqChan() (chan *base.Request, error) {
+func (m *myChannelManager) ReqChan() (chan base.Request, error) {
 	m.rwmutex.RLock()
 	defer m.rwmutex.RUnlock()
 	if err := m.checkInitializedStatus(); err != nil {
@@ -68,7 +68,7 @@ func (m *myChannelManager) ReqChan() (chan *base.Request, error) {
 	}
 }
 
-func (m *myChannelManager) ResChan() (chan *base.Response, error) {
+func (m *myChannelManager) ResChan() (chan base.Response, error) {
 	m.rwmutex.RLock()
 	defer m.rwmutex.RUnlock()
 	if err := m.checkInitializedStatus(); err != nil {
@@ -78,7 +78,7 @@ func (m *myChannelManager) ResChan() (chan *base.Response, error) {
 	}
 }
 
-func (m *myChannelManager) ItemChan() (chan *base.Item, error) {
+func (m *myChannelManager) ItemChan() (chan base.Item, error) {
 	m.rwmutex.RLock()
 	defer m.rwmutex.RUnlock()
 	if err := m.checkInitializedStatus(); err != nil {

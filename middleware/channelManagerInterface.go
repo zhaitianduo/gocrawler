@@ -34,11 +34,11 @@ type ChannelManager interface {
 	//close the channel manager
 	Close() bool
 	//get the request channel
-	ReqChan() (chan *base.Request, error)
+	ReqChan() (chan base.Request, error)
 	//get the response channel
-	ResChan() (chan *base.Response, error)
+	ResChan() (chan base.Response, error)
 	//get the item channel
-	ItemChan() (chan *base.Item, error)
+	ItemChan() (chan base.Item, error)
 	//get the error channel
 	ErrorChan() (chan error, error)
 	//get the length of channel

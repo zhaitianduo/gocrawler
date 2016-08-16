@@ -4,17 +4,6 @@ type IdGenerator interface {
 	GetUint32() uint32
 }
 
-type Entity interface {
-	Id() uint32
-}
-
-type Pool interface {
-	Take() (*Entity, error)
-	Return(entity *Entity) error
-	Total() uint32
-	Used() uint32
-}
-
 type StopSign interface {
 	// set the stop sign, if the stop sign has been signed, return false
 	Sign() bool
