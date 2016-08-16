@@ -1,9 +1,5 @@
 package middleware
 
-type IdGenerator interface {
-	GetUint32() uint32
-}
-
 type StopSign interface {
 	// set the stop sign, if the stop sign has been signed, return false
 	Sign() bool
@@ -12,7 +8,7 @@ type StopSign interface {
 	//reset the stop sign
 	Reset()
 	//code represents the code of stop sign processor
-	Deal(code string) uint32
+	Deal(code string)
 	//get the stop sign processed count from one stop sign processor
 	DealCount(code string) uint32
 	//get the total count of stop sign processed by all stop sign processors
