@@ -1,6 +1,7 @@
 package crawler
 
 import (
+	"gocrawler/base"
 	"net/http"
 )
 
@@ -27,8 +28,8 @@ type Scheduler interface {
 		crawlDepth uint32,
 		httpClientGenerator GenHttpClient,
 		resParsers []parseResponse,
-		itemProcessors []ProcessItem,
-		firstHttpRequest *Request,
+		itemProcessors []base.ProcessItem,
+		firstHttpRequest base.Request,
 	) error
 	// stop the crawling process and return if the stop process succeed
 	Stop() bool
